@@ -2,40 +2,38 @@
 /shelf/
 /workspace.xml
 
-# Maven and Build
-target/
-build/
+# Maven build folder
+/target/
+
+# IntelliJ IDEA files
+/.idea/
+/*.iml
+/out/
+
+# IntelliJ run configurations (optional, can include if you want to share configs)
+# /.idea/runConfigurations/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Compiled classes
+*.class
+
+# Temporary files
+*.tmp
+*.swp
+
+# Spring Boot specific
+spring.log
+hs_err_pid*
+
+# Maven backup files
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
 pom.xml.next
 release.properties
-dependency-reduced-pom.xml
-buildNumber.properties
-.mvn/wrapper/maven-wrapper.jar
-
-# IDEs
-.idea/
-*.iml
-*.ipr
-*.iws
-.classpath
-.project
-.settings/
-.factorypath
-.springBeans
-
-# OS Files
-.DS_Store
-Thumbs.db
-
-# Logs
-logs/
-*.log
-
-# Environment and secrets
-.env
-secrets.properties
-
-# Other
-help-doc/
