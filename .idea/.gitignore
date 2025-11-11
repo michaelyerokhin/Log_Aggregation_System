@@ -1,0 +1,41 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+
+# Maven and Build
+target/
+build/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/wrapper/maven-wrapper.jar
+
+# IDEs
+.idea/
+*.iml
+*.ipr
+*.iws
+.classpath
+.project
+.settings/
+.factorypath
+.springBeans
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Environment and secrets
+.env
+secrets.properties
+
+# Other
+help-doc/
