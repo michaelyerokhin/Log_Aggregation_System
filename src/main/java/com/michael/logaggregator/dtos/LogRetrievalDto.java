@@ -9,6 +9,7 @@ public class LogRetrievalDto {
     public String serviceName;
     public LocalDateTime date;
     public LogLevel level;
+    public String message;
 
     public LogRetrievalDto(){}
 
@@ -34,5 +35,13 @@ public class LogRetrievalDto {
 
     public void setLevel(LogLevel level) {
         this.level = level;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

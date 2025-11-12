@@ -78,14 +78,14 @@ public class LogServiceTest {
 
         List<LogEntry> result = List.of(dummyResult);
 
-        when(logEntryRepository.findByLevelAndServiceNameAndDate(any(LogLevel.class), any(String.class), any(LocalDateTime.class))).thenReturn(result);
+        when(logEntryRepository.findByLevelAndServiceNameAndDateAndMessage(any(LogLevel.class), any(String.class), any(LocalDateTime.class), any(String.class))).thenReturn(result);
 
         List<LogEntryDto> output = logService.retrieveLogs(logRetrievalDto);
 
         assertNotNull(output);
         assertEquals("EC2 Instance", output.getFirst().getServiceName());
         assertEquals(LogLevel.WARNING, output.getFirst().getLevel());
-        verify(logEntryRepository, times(1)).findByLevelAndServiceNameAndDate(any(LogLevel.class), any(String.class), any(LocalDateTime.class));
+        verify(logEntryRepository, times(1)).findByLevelAndServiceNameAndDateAndMessage(any(LogLevel.class), any(String.class), any(LocalDateTime.class), any(String.class));
 
 
     }

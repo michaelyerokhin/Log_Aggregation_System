@@ -26,8 +26,8 @@ public class LogService{
     }
 
     public List<LogEntryDto> retrieveLogs(LogRetrievalDto logRetrievalDto){
-        List<LogEntry> returnedEntries = logEntryRepository.findByLevelAndServiceNameAndDate(
-                logRetrievalDto.getLevel(), logRetrievalDto.getServiceName(), logRetrievalDto.getDate());
+        List<LogEntry> returnedEntries = logEntryRepository.findByLevelAndServiceNameAndDateAndMessage(
+                logRetrievalDto.getLevel(), logRetrievalDto.getServiceName(), logRetrievalDto.getDate(), logRetrievalDto.getMessage());
         return returnedEntries.stream().map(LogEntryDto::toLogEntryDto).toList();
     }
 

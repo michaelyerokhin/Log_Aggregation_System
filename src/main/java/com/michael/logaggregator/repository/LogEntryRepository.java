@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 public interface LogEntryRepository extends JpaRepository<LogEntry,Long> {
-    List<LogEntry> findByLevelAndServiceNameAndDate(LogLevel level, String serviceName, LocalDateTime date);
+    List<LogEntry> findByLevelAndServiceNameAndDateAndMessage(LogLevel level, String serviceName, LocalDateTime date, String message);
 
 
 

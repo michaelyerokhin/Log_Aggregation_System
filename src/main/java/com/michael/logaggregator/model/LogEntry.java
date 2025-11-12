@@ -13,29 +13,34 @@ import java.util.Date;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity
 @Table(name = "logs")
 public class LogEntry {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
     private Long id;
 
     @CreationTimestamp
-    @Column(nullable = false, updatable = false)
+    @Column(nullable = false, updatable = false, name = "INSERTED_AT")
     private LocalDateTime timestamp;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "SERVICE_NAME")
     private String serviceName;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(nullable = false, name = "LOG_TYPE")
     private LogLevel level;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "CONTENT")
     private String message;
 
-    @Column(columnDefinition = "jsonb")
+    @Column(nullable = false, name = "TRACE_ID")
+    private Long traceId;
+
+    @Column(columnDefinition = "jsonb", name = "JSON_METADATA")
     private String metadata;
 
     public LogEntry(){}
@@ -45,6 +50,19 @@ public class LogEntry {
         this.level = level;
         this.message = message;
         this.metadata = metadata == null ? "" : metadata;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LogEntry myEntity = (LogEntry) o;
+        return Objects.equals(id, myEntity.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
     /** Getters and setters below */
