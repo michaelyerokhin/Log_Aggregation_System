@@ -7,7 +7,7 @@ import java.util.Date;
 
 public class LogRetrievalDto {
     public String serviceName;
-    public LocalDateTime date;
+    public LocalDateTime timestamp;
     public LogLevel level;
     public String message;
 
@@ -21,12 +21,12 @@ public class LogRetrievalDto {
         this.serviceName = serviceName;
     }
 
-    public LocalDateTime getDate() {
-        return date;
+    public LocalDateTime getTimestamp() {
+        return timestamp;
     }
 
-    public void setDate(LocalDateTime date) {
-        this.date = date;
+    public void setTimestamp(LocalDateTime timestamp) {
+        this.timestamp = timestamp;
     }
 
     public LogLevel getLevel() {
@@ -38,7 +38,7 @@ public class LogRetrievalDto {
     }
 
     public String getMessage() {
-        return message;
+        return message == null ? "" : message;
     }
 
     public void setMessage(String message) {

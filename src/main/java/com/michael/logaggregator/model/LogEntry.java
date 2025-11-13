@@ -2,26 +2,32 @@ package com.michael.logaggregator.model;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.michael.logaggregator.dtos.LogEntryDto;
+import com.vladmihalcea.hibernate.type.json.JsonType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Table;
-import org.springframework.data.annotation.Id;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.Type;
 
 import java.util.Date;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import java.time.LocalDateTime;
+import java.util.Map;
 import java.util.Objects;
+import java.util.UUID;
 
-@Entity
+
 @Table(name = "logs")
+@Entity(name = "logs")
 public class LogEntry {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
-    private Long id;
+    @GeneratedValue
+    @Column(name = "ID", updatable = false, nullable = false)
+    private UUID id = UUID.randomUUID(); ;
 
     @CreationTimestamp
     @Column(nullable = false, updatable = false, name = "INSERTED_AT")
@@ -40,16 +46,17 @@ public class LogEntry {
     @Column(nullable = false, name = "TRACE_ID")
     private Long traceId;
 
+    @Type(JsonType.class)
     @Column(columnDefinition = "jsonb", name = "JSON_METADATA")
-    private String metadata;
+    private Map<String, Object> metadata;
 
     public LogEntry(){}
 
-    public LogEntry(String serviceName, LogLevel level, String message, String metadata) {
+    public LogEntry(String serviceName, LogLevel level, String message, Map<String, Object> metadata) {
         this.serviceName = serviceName;
         this.level = level;
         this.message = message;
-        this.metadata = metadata == null ? "" : metadata;
+        this.metadata = metadata;
     }
 
     @Override
@@ -65,13 +72,11 @@ public class LogEntry {
         return Objects.hash(id);
     }
 
-    /** Getters and setters below */
-
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -107,11 +112,19 @@ public class LogEntry {
         this.message = message;
     }
 
-    public String getMetadata() {
+    public Long getTraceId() {
+        return traceId;
+    }
+
+    public void setTraceId(Long traceId) {
+        this.traceId = traceId;
+    }
+
+    public Map<String, Object> getMetadata() {
         return metadata;
     }
 
-    public void setMetadata(String metadata) {
+    public void setMetadata(Map<String, Object> metadata) {
         this.metadata = metadata;
     }
 }

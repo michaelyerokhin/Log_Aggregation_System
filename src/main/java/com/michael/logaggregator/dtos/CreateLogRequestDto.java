@@ -4,6 +4,10 @@ import com.michael.logaggregator.model.LogEntry;
 import com.michael.logaggregator.model.LogLevel;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.Map;
 
 public class CreateLogRequestDto {
     @NotBlank
@@ -15,15 +19,15 @@ public class CreateLogRequestDto {
     @NotBlank
     public String message;
 
-    public String metadata;
+    public Map<String, Object> metadata;
 
     public CreateLogRequestDto(){}
 
-    public CreateLogRequestDto(String serviceName, LogLevel level, String message, String metadata){
+    public CreateLogRequestDto(String serviceName, LogLevel level, String message, Map<String, Object> metadata){
         this.serviceName = serviceName;
         this.level = level;
         this.message = message;
-        this.metadata = metadata == null ? "" : metadata;
+        this.metadata = metadata;
     }
 
     public LogEntry toEntity(){
@@ -34,7 +38,6 @@ public class CreateLogRequestDto {
         log.setServiceName(getServiceName());
         return log;
     }
-
 
 
     public @NotBlank String getServiceName() {
@@ -61,12 +64,11 @@ public class CreateLogRequestDto {
         this.message = message;
     }
 
-    public String getMetadata() {
+    public Map<String, Object> getMetadata() {
         return metadata;
     }
 
-    public void setMetadata(String metadata) {
+    public void setMetadata(Map<String, Object> metadata) {
         this.metadata = metadata;
     }
-
 }

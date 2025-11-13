@@ -1,14 +1,13 @@
 package com.michael.logaggregator.service;
 
-import com.michael.logaggregator.dtos.CreateLogRequestDto;
 import com.michael.logaggregator.dtos.LogEntryDto;
 import com.michael.logaggregator.dtos.LogRetrievalDto;
 import com.michael.logaggregator.model.LogEntry;
 import com.michael.logaggregator.repository.LogEntryRepository;
 import org.springframework.stereotype.Service;
 
+
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class LogService{
@@ -26,8 +25,8 @@ public class LogService{
     }
 
     public List<LogEntryDto> retrieveLogs(LogRetrievalDto logRetrievalDto){
-        List<LogEntry> returnedEntries = logEntryRepository.findByLevelAndServiceNameAndDateAndMessage(
-                logRetrievalDto.getLevel(), logRetrievalDto.getServiceName(), logRetrievalDto.getDate(), logRetrievalDto.getMessage());
+        List<LogEntry> returnedEntries = logEntryRepository.findByLevelAndServiceNameAndTimestampAndMessage(
+                logRetrievalDto.getLevel(), logRetrievalDto.getServiceName(), logRetrievalDto.getTimestamp(), logRetrievalDto.getMessage());
         return returnedEntries.stream().map(LogEntryDto::toLogEntryDto).toList();
     }
 

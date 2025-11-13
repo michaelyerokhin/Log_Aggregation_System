@@ -6,10 +6,13 @@ import com.michael.logaggregator.model.LogLevel;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.Id;
 
 import java.time.LocalDateTime;
+import java.util.Map;
 
 public class LogEntryDto {
     @NotBlank
@@ -21,7 +24,7 @@ public class LogEntryDto {
     @NotBlank
     private String message;
 
-    private String metadata;
+    private Map<String, Object> metadata;
 
     public LogEntryDto(){}
 
@@ -48,10 +51,6 @@ public class LogEntryDto {
         return serviceName;
     }
 
-    public void setServiceName(@NotBlank String serviceName) {
-        this.serviceName = serviceName;
-    }
-
     public @NotNull LogLevel getLevel() {
         return level;
     }
@@ -68,11 +67,15 @@ public class LogEntryDto {
         this.message = message;
     }
 
-    public String getMetadata() {
+    public void setServiceName(@NotBlank String serviceName) {
+        this.serviceName = serviceName;
+    }
+
+    public Map<String, Object> getMetadata() {
         return metadata;
     }
 
-    public void setMetadata(String metadata) {
+    public void setMetadata(Map<String, Object> metadata) {
         this.metadata = metadata;
     }
 }
