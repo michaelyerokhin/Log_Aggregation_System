@@ -26,8 +26,8 @@ import java.util.UUID;
 public class LogEntry {
     @Id
     @GeneratedValue
-    @Column(name = "ID", updatable = false, nullable = false)
-    private UUID id = UUID.randomUUID(); ;
+    @Column(nullable = false, updatable = false, name = "ID")
+    private UUID id;
 
     @CreationTimestamp
     @Column(nullable = false, updatable = false, name = "INSERTED_AT")

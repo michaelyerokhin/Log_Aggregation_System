@@ -67,26 +67,31 @@ public class LogServiceTest {
     public void checkRetrieveLogs(){
         //Incoming logRetrievalDto data
         LogRetrievalDto logRetrievalDto = new LogRetrievalDto();
-        logRetrievalDto.setTimestamp(LocalDateTime.now());
+        logRetrievalDto.setTraceId(1000L);
         logRetrievalDto.setLevel(LogLevel.WARNING);
         logRetrievalDto.setServiceName("EC2 Instance");
+        logRetrievalDto.setMessage("Valid message");
 
         // Retrieved LogEntry
         LogEntry dummyResult = new LogEntry();
-        dummyResult.setTimestamp(logRetrievalDto.getTimestamp());
         dummyResult.setLevel(logRetrievalDto.getLevel());
         dummyResult.setServiceName(logRetrievalDto.getServiceName());
+        dummyResult.setTraceId(logRetrievalDto.getTraceId());
+        dummyResult.setMessage(logRetrievalDto.getMessage());
+
 
         List<LogEntry> result = List.of(dummyResult);
 
-        when(logEntryRepository.findByLevelAndServiceNameAndTimestampAndMessage(any(LogLevel.class), any(String.class), any(LocalDateTime.class), any(String.class))).thenReturn(result);
+        when(logEntryRepository.findByLevelAndServiceNameAndTraceIdAndMessage(any(LogLevel.class), any(String.class), any(Long.class), any(String.class))).thenReturn(result);
 
         List<LogEntryDto> output = logService.retrieveLogs(logRetrievalDto);
 
         assertNotNull(output);
         assertEquals("EC2 Instance", output.getFirst().getServiceName());
         assertEquals(LogLevel.WARNING, output.getFirst().getLevel());
-        verify(logEntryRepository, times(1)).findByLevelAndServiceNameAndTimestampAndMessage(any(LogLevel.class), any(String.class), any(LocalDateTime.class), any(String.class));
+        assertEquals((Long) 1000L, output.getFirst().getTraceId());
+        assertEquals("Valid message", result.getFirst().getMessage());
+        verify(logEntryRepository, times(1)).findByLevelAndServiceNameAndTraceIdAndMessage(any(LogLevel.class), any(String.class), any(Long.class), any(String.class));
 
 
     }

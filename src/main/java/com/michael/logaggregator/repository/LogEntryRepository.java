@@ -3,14 +3,15 @@ package com.michael.logaggregator.repository;
 import com.michael.logaggregator.model.LogEntry;
 import com.michael.logaggregator.model.LogLevel;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
-import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
-@Repository
+
 public interface LogEntryRepository extends JpaRepository<LogEntry,Long> {
-    List<LogEntry> findByLevelAndServiceNameAndTimestampAndMessage(LogLevel level, String serviceName, LocalDateTime timestamp, String message);
+    List<LogEntry> findByLevelAndServiceNameAndTraceIdAndMessage(LogLevel level, String serviceName, Long traceId, String message);
+
+    LogEntry findById(UUID id);
 
 
 

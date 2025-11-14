@@ -7,8 +7,8 @@ import java.util.Date;
 
 public class LogRetrievalDto {
     public String serviceName;
-    public LocalDateTime timestamp;
     public LogLevel level;
+    public Long traceId;
     public String message;
 
     public LogRetrievalDto(){}
@@ -21,12 +21,12 @@ public class LogRetrievalDto {
         this.serviceName = serviceName;
     }
 
-    public LocalDateTime getTimestamp() {
-        return timestamp;
+    public Long getTraceId() {
+        return traceId;
     }
 
-    public void setTimestamp(LocalDateTime timestamp) {
-        this.timestamp = timestamp;
+    public void setTraceId(Long traceId) {
+        this.traceId = traceId;
     }
 
     public LogLevel getLevel() {
