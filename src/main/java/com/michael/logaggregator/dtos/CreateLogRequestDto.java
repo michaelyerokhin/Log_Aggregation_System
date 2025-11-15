@@ -19,14 +19,18 @@ public class CreateLogRequestDto {
     @NotBlank
     public String message;
 
+    @NotNull
+    public Long traceId;
+
     public Map<String, Object> metadata;
 
     public CreateLogRequestDto(){}
 
-    public CreateLogRequestDto(String serviceName, LogLevel level, String message, Map<String, Object> metadata){
+    public CreateLogRequestDto(String serviceName, LogLevel level, String message, Long traceId, Map<String, Object> metadata){
         this.serviceName = serviceName;
         this.level = level;
         this.message = message;
+        this.traceId = traceId;
         this.metadata = metadata;
     }
 
@@ -70,5 +74,13 @@ public class CreateLogRequestDto {
 
     public void setMetadata(Map<String, Object> metadata) {
         this.metadata = metadata;
+    }
+
+    public @NotNull Long getTraceId() {
+        return traceId;
+    }
+
+    public void setTraceId(@NotNull Long traceId) {
+        this.traceId = traceId;
     }
 }

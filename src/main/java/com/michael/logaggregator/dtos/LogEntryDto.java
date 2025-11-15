@@ -24,7 +24,7 @@ public class LogEntryDto {
     @NotBlank
     private String message;
 
-    @NotBlank
+    @NotNull
     private Long traceId;
 
     private Map<String, Object> metadata;
@@ -39,6 +39,14 @@ public class LogEntryDto {
         logEntry.setTraceId(getTraceId());
         logEntry.setMetadata(getMetadata());
         return logEntry;
+    }
+
+    public LogEntryDto(String serviceName, LogLevel level, String message, Long traceId, Map<String, Object> metadata) {
+        this.serviceName = serviceName;
+        this.level = level;
+        this.message = message;
+        this.traceId = traceId;
+        this.metadata = metadata;
     }
 
     public static LogEntryDto toLogEntryDto(LogEntry logEntry){
@@ -84,11 +92,11 @@ public class LogEntryDto {
         this.metadata = metadata;
     }
 
-    public @NotBlank Long getTraceId() {
+    public @NotNull Long getTraceId() {
         return traceId;
     }
 
-    public void setTraceId(@NotBlank Long traceId) {
+    public void setTraceId(@NotNull Long traceId) {
         this.traceId = traceId;
     }
 }

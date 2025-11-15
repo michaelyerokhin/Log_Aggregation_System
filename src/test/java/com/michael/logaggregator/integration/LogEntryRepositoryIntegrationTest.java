@@ -17,6 +17,7 @@ import java.time.Instant;
 import java.util.*;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.InstanceOfAssertFactories.type;
 
 @Testcontainers
 @DataJpaTest
@@ -61,7 +62,10 @@ public class LogEntryRepositoryIntegrationTest {
 
         assertThat(foundById).isNotNull();
         assertThat(foundById.getMessage()).isEqualTo("Integration Test: Success");
-        System.out.println(foundById.getMetadata());
+        assertThat(foundById.getMetadata()).isEqualTo(log.getMetadata());
+
+
+
 
         assertThat(foundByAllVisibleParameters).isNotNull();
         assertThat(foundByAllVisibleParameters.getFirst().getLevel()).isEqualTo(LogLevel.WARNING);

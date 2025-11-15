@@ -15,7 +15,7 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/logs")
+@RequestMapping("/logs")
 public class LogController {
 
     private final LogService logService;
