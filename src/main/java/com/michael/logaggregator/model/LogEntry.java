@@ -52,11 +52,12 @@ public class LogEntry {
 
     public LogEntry(){}
 
-    public LogEntry(String serviceName, LogLevel level, String message, Map<String, Object> metadata) {
+    public LogEntry(String serviceName, LogLevel level, String message, Long traceId, Map<String, Object> metadata) {
         this.serviceName = serviceName;
         this.level = level;
         this.message = message;
         this.metadata = metadata;
+        this.traceId = traceId;
     }
 
     @Override

@@ -1,13 +1,5 @@
 spring:
-  application:
-    name: logaggregator
-  datasource:
-    url: jdbc:postgresql://localhost:5433/log_aggregation
-    username: postgres
-    password: finishingThisTime13274
-    jpa:
-      hibernate:
-        ddl-auto: <create | create-drop | update | validate | none>
-      properties:
-        hibernate:
-          dialect: org.hibernate.dialect.PostgreSQLDialect
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true

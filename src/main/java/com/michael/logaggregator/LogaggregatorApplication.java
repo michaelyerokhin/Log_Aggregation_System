@@ -19,7 +19,7 @@ public class LogaggregatorApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(LogaggregatorApplication.class, args);
 	}
-
+/**
 	@Bean
 	CommandLineRunner runner(LogEntryRepository repository) {
 		return args -> {
@@ -36,5 +36,6 @@ public class LogaggregatorApplication {
 			System.out.println(saved.getFirst().getMessage());
 		};
 	}
+	*/
 
 }
